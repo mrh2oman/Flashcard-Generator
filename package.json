@@ -1,0 +1,27 @@
+{
+  "name": "flascard-generator-daw",
+  "version": "1000.0.0",
+  "description": "Generator of flashcards",
+  "main": "app.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "author": "David Waterman",
+  "license": "UNLICENSED",
+  "homepage": "",
+  "dependencies": {
+    "inquirer": "^2.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "flashcards",
+    "cloze",
+    "basic",
+    "bootcamp",
+    "ku"
+  ]
+}
