@@ -8,7 +8,7 @@ var colors = require("colors");
 //starting prompt
 inquirer.prompt([{
   name: "reviewOrCreate",
-  message:"Welcome to Rick and Morty flashcards. You can answer the existing questions ".red + "(IN ALL LOWER CASE)".red.bgWhite + " or make new ones. Would you like to make a new flash card or review existing ones?".red,
+  message: "Welcome to Rick and Morty flashcards. You can answer the existing questions ".red + "(IN ALL LOWER CASE)".red.bgWhite + " or make new ones. Would you like to make a new flash card or review existing ones?".red,
   type: "list",
   choices: [{
     name: "Add A Card!"
@@ -133,9 +133,9 @@ var whatsNext = function() {
   });
 };
 
-var reviewCards = function(){
+var reviewCards = function() {
   //read log file
-  fs.readFile("./log.txt", "utf8", function(error, data){
+  fs.readFile("./log.txt", "utf8", function(error, data) {
     //error
     if (error) {
       console.log("Error : " + error);
@@ -150,7 +150,7 @@ var reviewCards = function(){
   });
 };
 
-var displayCards = function(array, index){
+var displayCards = function(array, index) {
   madeCards = array[index];
   var parsedmadeCards = JSON.parse(madeCards);
   var cardsText;
@@ -158,24 +158,24 @@ var displayCards = function(array, index){
   if (parsedmadeCards.type === "basic") {
     cardsText = parsedmadeCards.front.underline;
     correct = parsedmadeCards.back.red.bold;
-  } else if (parsedmadeCards.type === "cloze"){
+  } else if (parsedmadeCards.type === "cloze") {
     cardsText = parsedmadeCards.clozeDeleted.underline;
     correct = parsedmadeCards.cloze.red.bold;
   }
-    inquirer.prompt([{
-      name: "response",
-      message: ("The question is... " + cardsText)
-    }]).then(function(answer){
-      if (answer.response === correct){
-        console.log("You answered correctly. The answer is " + correct);
-        if (index < array.length - 1){
-          displayCards(array, index + 1);
-        }
-      } else {
-        console.log ("Your answer is not correct! The correct answer is " + correct);
-        if (index < array.length - 1){
-          displayCards(array, index + 1);
-        }
+  inquirer.prompt([{
+    name: "response",
+    message: ("The question is... " + cardsText)
+  }]).then(function(answer) {
+    if (answer.response === correct) {
+      console.log("You answered correctly. The answer is " + correct);
+      if (index < array.length - 1) {
+        displayCards(array, index + 1);
       }
-    });
-  };
+    } else {
+      console.log("Your answer is not correct! The correct answer is " + correct);
+      if (index < array.length - 1) {
+        displayCards(array, index + 1);
+      }
+    }
+  });
+};
